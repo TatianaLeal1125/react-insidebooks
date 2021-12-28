@@ -3,7 +3,7 @@ import Logo from '../Logo'
 import SearchBar from './SearchBar'
 import { MenuButtons, NavBar, Wrapper } from './navBar.styles'
 
-function NavegationBar() {
+function NavegationBar () {
   return (
     <Wrapper>
     <NavBar>
@@ -26,6 +26,7 @@ function NavegationBar() {
       </MenuButtons>
     </NavBar>
     </Wrapper>
+
   )
 }
 

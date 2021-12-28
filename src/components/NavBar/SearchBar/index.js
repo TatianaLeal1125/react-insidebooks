@@ -5,7 +5,7 @@ function SearchBar() {
   return (
     <Search className='searchBar' action='/searchBook'>
       <input className='btn' type='text' placeholder=' Buscar..' name='search' />
-      <button className='btn red' type='submit'>
+      <button  type='submit'>
         <i className='fas fa-search'></i>
       </button>
     </Search>
