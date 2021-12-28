@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Body = styled.main`
-    width: 100vw;
+    width: 100;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -19,7 +20,6 @@ export const Body = styled.main`
         border-radius: 4px;
 
         .books{
-            background-color: white;
             text-align: left;
         }
 
@@ -29,7 +29,7 @@ export const Body = styled.main`
             text-align: left;
             font-size: 1.3em;
             font-family: "DIN", sans-serif;
-            color: var(--fontColors);
+            color: black
         }
 
         div.products{
@@ -44,7 +44,6 @@ export const Body = styled.main`
         position: absolute;
         top: 7vh;
         width: 100%;
-        left: 0;
         transition-property: width;
         transition-duration: 0.3s;  
         z-index: 300;
@@ -54,16 +53,16 @@ export const Body = styled.main`
             position: relative;
             grid-template-columns: 100%;
             width: 96%;
-            height: 89vh;
+            height: 98vh;
             padding: 15px 15px 30px 15px;
             margin-top: 10px;
-            margin-left: 2%;
+            margin-left: 0%;
             border: 4px solid var(--sombra-boton);
             box-shadow: 3px 5px 15px 5px rgba(0,0,0,0.24);
             background-color: #ffffff;
             border-radius: 4px;
             z-index: 300;
-            background: radial-gradient(var(--azul-morado-claro), var(--azul-morado-oscuro));
+            background: radial-gradient(#6c757d, #495057);
     
             div.index{
                 width: 100%;
@@ -75,6 +74,28 @@ export const Body = styled.main`
                     font-family: "DIN", sans-serif;
                     text-align: left;
                     color: #ffffff;
+                }
+
+                .logo{
+                    margin-left: 50px;
+                }
+
+                ul{
+                    width: 94%;
+                    list-style: none;
+                    text-align: left;
+                    margin-top: 15px;
+                    margin-left: 10px;
+                    padding: 0;
+                    color: white;
+                }
+
+                li{
+                    margin-bottom:25px;
+                    margin-right: 5px;
+                    padding-bottom: 20px;
+                    font-size: 18px; 
+                    border-bottom: 1px solid white;
                 }
 
                 a {
@@ -92,11 +113,12 @@ export const Body = styled.main`
                       font-size: 25px;
                       text-decoration: none;
                       padding-top: 5px;
+                      color: white;
                     }
                 
-                    span{
+                    span#li{
                       padding-top: 5px;
-                      padding-left: 5px;
+                      padding-left: 20px;
                       font-family: "DIN", sans-serif;
                     }
                 }
@@ -111,6 +133,7 @@ export const Body = styled.main`
         div.sectionChange{
             display: grid;
             grid-template-columns: 30% 70%;
+            background-color: white;
         }
 
         div#sideBarVer{
@@ -124,7 +147,7 @@ export const Body = styled.main`
 
         section.books{
             grid-column: 2/3;
-            width: 96.5%;
+            width: 97.5%;
             margin-left: 5px;
             margin-right: 5%;
         }

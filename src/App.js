@@ -5,7 +5,6 @@ import Main from './components/Body/Main'
 function App () {
   return (
     <div className='App'>
-      <NavBar />
       <Main />
     </div>
   )
