@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Search = styled.form`
   /* Search Bar */
   width: 40%;
+  min-width: 210px;
   position: relative;
   display: block;
   height: 32px;
@@ -12,7 +13,7 @@ export const Search = styled.form`
     color: var(--fontColors);
     font-weight: normal;
     font-size: 17px;
-    background: var(--searchBarColor);
+    background: white;
     max-width: 100%;
     width: 100%;
     height: 100%;
@@ -26,7 +27,8 @@ export const Search = styled.form`
   }
 
   input[type='text']::placeholder {
-    color: var(--fontColors);
+    color: gray;
+    text-align: left;
   }
 
   button {

@@ -11,7 +11,7 @@ export const Body = styled.main`
 
     section{
         width: 98%;
-        margin-top: 10px;
+        margin-top: 0px;
         padding-top: 10px;
         margin-bottom: 5px;
         border: 4px solid var(--sombra-boton);
@@ -20,6 +20,12 @@ export const Body = styled.main`
 
         .books{
             text-align: left;
+        }
+
+        .search{
+            height: 220px;
+            color: white;
+            background-color: var(--azul-oscuro)
         }
 
         h3{
