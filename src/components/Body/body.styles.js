@@ -170,7 +170,21 @@ export const Body = styled.main`
         
     }
 
+    @media (min-width: 768px) {
+        .col-md-3{
+            flex: 0 0 45%;
+            max-width: 100%;
+        }
+        .row{
+            margin-right: -60px;
+        }
+    }
+
     @media (min-width: 900px) {
+        .col-md-3{
+            flex: 0 0 30%;
+            max-width: 100%;
+        }
         main div.sectionChange{
             display: grid;
             grid-template-columns: 10% 90%;
