@@ -47,7 +47,6 @@ function SideBar (props) {
         </li>
       })} 
       </ul>
-
       <hr className="sidebar-divider"/>
     </div>
   )

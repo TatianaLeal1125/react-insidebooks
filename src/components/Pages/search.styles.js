@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Search = styled.div`
+export const SearchBook = styled.div`
     width: 99%;
+    height: 100%;
     display: block;
     padding: 30px;
     border: 2px solid red;

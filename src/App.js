@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './components/NavBar'
 import Main from './components/Body/Main'
 
 function App () {
@@ -7,6 +6,7 @@ function App () {
     <div className='App'>
       <Main />
     </div>
+
   )
 }
 

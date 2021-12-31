@@ -4,10 +4,13 @@ export const Body = styled.main`
     width: 100vw;
     height: 100vh;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     align-content: center;
     justify-content: center;
     background-color: var(--backgroundColor);
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     section{
         width: 98%;
@@ -17,6 +20,7 @@ export const Body = styled.main`
         border: 4px solid var(--sombra-boton);
         box-shadow: 3px 5px 15px 5px rgba(0,0,0,0.24);
         border-radius: 4px;
+        overflow: auto;
 
         .books{
             text-align: left;
@@ -46,7 +50,7 @@ export const Body = styled.main`
 
     div#sideBarVer{
         display: block;
-        position: absolute;
+        position: relative;
         width: 100%;
         transition-property: width;
         transition-duration: 0.3s;  
@@ -63,7 +67,6 @@ export const Body = styled.main`
             border: 4px solid var(--sombra-boton);
             box-shadow: 3px 5px 15px 5px rgba(0,0,0,0.24);
             background-color: #ffffff;
-            border-radius: 4px;
             z-index: 300;
             background: radial-gradient(var(--azul-morado-claro),var(--azul-morado-claro));
     
@@ -149,7 +152,6 @@ export const Body = styled.main`
             position: inherit;
             width: 99%;
             margin-bottom: 10px;
-            margin-left: 1%;
             aside{
                 div.index{
                     h3{

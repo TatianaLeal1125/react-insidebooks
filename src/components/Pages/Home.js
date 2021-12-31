@@ -1,11 +1,11 @@
 import React from 'react'
-import { Search } from './search.styles'
+import { SearchBook } from './search.styles'
 
 function Home () {
   return (
-      <Search className='search'>
+      <SearchBook className='search'>
           <h3>Estás en home</h3>
-      </Search>
+      </SearchBook>
   )
 }
 

@@ -12,8 +12,8 @@ function Main () {
   return (
     <Body>
       <div className='sectionChange'>
-          <div className='sideBarVer' id='sideBarVer'>
-              <aside>
+          <div className='sideBarVer accordionSidebar sidebar' id='sideBarVer'>
+              <aside >
                 <SideBar />
               </aside>
           </div>
