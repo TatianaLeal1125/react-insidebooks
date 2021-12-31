@@ -29,6 +29,7 @@ export const Body = styled.main`
         .search{
             height: 220px;
             color: white;
+            font-family: "DIN", sans-serif;
             background-color: var(--azul-oscuro)
         }
 

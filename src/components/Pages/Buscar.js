@@ -38,15 +38,14 @@ function Buscar () {
     <SearchBook className='search'>
       <label >Buscar por título:  </label>
       <Search onSubmit={searchMovies} className='searchBar' method='GET'>
-        <input ref={searchKeyWord} className='btn' type='text' placeholder=' Buscar...' name='search' />
+        <input ref={searchKeyWord} className='btn' type='text' placeholder=' ' name='search' />
         <button type='submit'>
           <i className='fas fa-search'></i>
         </button>
       </Search>
-      
     <div className="row">
         <div className="col-12">
-          <h2>Libros para la palabra: {keyword} </h2>
+          <h2 style={{}}>Libros para la palabra: {keyword} </h2>
         </div>
       </div>
 
@@ -60,8 +59,8 @@ function Buscar () {
                 return (
                   <div className="col-sm-6 col-md-3 my-4" key={i}>
                     <div className="card shadow mb-4">
-                      <div className="card-header py-3">
-                        <h5 className="m-0 font-weight-bold text-gray-800" style={{ color:'gray' }}>{movie.Title}</h5>
+                      <div className="card-header py-3" style={{height: '75px', backgroundColor: 'var(--rojo)'}}>
+                        <h5 className="m-0 font-weight-bold text-gray-800" style={{ color:'white' }}>{movie.Title}</h5>
                       </div>
                       <div className="card-body">
                         <div className="text-center">
@@ -69,7 +68,7 @@ function Buscar () {
                             className="img-fluid px-3 px-sm-4 mt-3 mb-4"
                             src={movie.Poster}
                             alt={movie.Title}
-                            style={{ width: '90%', height: '400px', objectFit: 'cover' }}
+                            style={{ width: '90%', height: '200px', objectFit: 'cover' }}
                           />
                         </div>
                         <p style={{ color: 'gray'}}>{movie.Year}</p>

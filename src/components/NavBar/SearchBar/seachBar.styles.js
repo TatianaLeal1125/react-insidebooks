@@ -10,10 +10,11 @@ export const Search = styled.form`
 
   input[type='text'] {
     text-transform: none;
-    color: var(--fontColors);
+    color: gray;
+    text-align: left;
     font-weight: normal;
     font-size: 17px;
-    background: white;
+    background: var(--fontColors);
     max-width: 100%;
     width: 100%;
     height: 100%;
