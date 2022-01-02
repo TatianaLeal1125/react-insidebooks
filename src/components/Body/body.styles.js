@@ -141,6 +141,22 @@ export const Body = styled.main`
     //    MEDIA QUERIES PC             //
     /***********************************/
     @media (min-width: 350px) {
+        .card-body{
+            background: radial-gradient(var(--azul-oscuro),var(--azul-oscuro));
+        }
+        .card-body img{
+            width:auto;
+            height: 200px;
+        }
+
+        .card-header{
+            background: radial-gradient(var(--rojo),var(--rojo-oscuro));
+        }
+
+        h5{
+            font-size: 16px;
+        }
+
         div.sectionChange{
             display: grid;
             grid-template-columns: 30% 70%;
@@ -221,12 +237,25 @@ export const Body = styled.main`
     }
 
     @media (min-width: 1200px) {
+        .col-md-3{
+            flex: 0 0 25%;
+            max-width: 80%;
+        }
+        .row{
+            margin-right: -30px;
+        }
         div.sectionChange{
             display: grid;
             grid-template-columns: 20% 80%;
         }
     }
 
+    @media (min-width: 1400px) {
+        .col-md-3{
+            flex: 0 0 20%;
+            max-width: 80%;
+        }
+    }
     @media (min-width: 1800px) {
         div.sectionChange{
             display: grid;
