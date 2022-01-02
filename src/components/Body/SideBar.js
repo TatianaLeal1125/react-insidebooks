@@ -21,7 +21,7 @@ const options = [
   }
 ]
 
-function SideBar (props) {
+function SideBar () {
   return (
     <div className= 'index' >
 

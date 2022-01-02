@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
+import Pagination from './Pagination'
 import { Search } from '../NavBar/SearchBar/seachBar.styles'
 import { SearchBook } from './search.styles'
 
 function Buscar () {
   const [books, setBooks] = useState([])
+  const [dataAPI, setDataAPI] = useState({})
   const [keyword, setKeyword] = useState('')
+  const [page, setPage] = useState(0)
   const searchKeyWord = useRef()
   const apiKey = 'cb48806a'
 
@@ -14,6 +17,17 @@ function Buscar () {
     searchKeyWord.current.value = ''
   }
 
+  const changePage = async (e) => {
+    await setPage(page + 1)
+    console.log('Cambió la página')
+  }
+
+  const previousPage = async (e) => {
+    await setPage(page - 1)
+    console.log('Cambió la página')
+  }
+
+
   useEffect(() => {
     console.log('%cse actualizó el componente books', 'color: blue')
   }, [books])
@@ -21,19 +35,22 @@ function Buscar () {
   useEffect(() => {
     console.log('%cse actualizó el componente keyword', 'color: red')
     //`http://www.omdbapi.com/?s=${keyword !== '' ? keyword : 'action'}&apikey=${apiKey}`
-    fetch(`http://localhost:3000/api/products?page=0&search=${keyword}`)
+    fetch(`http://localhost:3000/api/products?page=${page}&search=${keyword}`)
       .then(response => response.json())
       .then(data => {
         console.log('Los libos son: ', data)
         if (!data.Error) {
           setBooks(data.books)
+          setDataAPI(data.pagination)
         } else {
           setBooks([])
+          setDataAPI({})
         }
         console.log('La cantidad de películas es: ', books)
+        console.log('Pagination is', dataAPI)
       })
       .catch(error => console.log(error))
-  }, [keyword])
+  }, [keyword, page])
 
   return (
     <div>
@@ -81,6 +98,23 @@ function Buscar () {
               })
             }
           </div>
+          <nav aria-label="...">
+      <ul className="pagination">
+        <li className={`page-item ${dataAPI.previousPage === '' ? 'disabled' : ''}`} onClick={ dataAPI.previousPage !== '' ? previousPage : ''}>
+          <a className="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link" href="#">1</a>
+        </li>
+        <li className="page-item active">
+          <a className="page-link" href="#">2 <span className="sr-only">(current)</span></a>
+        </li>
+
+        <li className={`page-item ${dataAPI.nextPage === '' ? 'disabled' : ''}`} onClick={ dataAPI.nextPage !== '' ? changePage : ''}>
+          <a className="page-link" href="#">Next</a>
+        </li>
+    </ul>
+    </nav>
           { books.length === 0 && <div className="alert alert-warning text-center">No se encontraron películas</div>}
         </>
         :
