@@ -5,11 +5,13 @@ import { SearchBook } from './search.styles'
 
 function Buscar () {
   const [books, setBooks] = useState([])
-  const [dataAPI, setDataAPI] = useState({})
+  const [dataPagination, setDataPagination] = useState({})
   const [keyword, setKeyword] = useState('')
-  const [page, setPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const searchKeyWord = useRef()
+  const pageNumber = useRef()
   const apiKey = 'cb48806a'
+  const pageLimitPagination = 3
 
   const searchBooks = async (e) => {
     e.preventDefault()
@@ -17,16 +19,31 @@ function Buscar () {
     searchKeyWord.current.value = ''
   }
 
-  const changePage = async (e) => {
-    await setPage(page + 1)
+  const nextPage = async (e) => {
+    await setCurrentPage(currentPage + 1)
     console.log('Cambió la página')
   }
 
   const previousPage = async (e) => {
-    await setPage(page - 1)
+    await setCurrentPage(currentPage - 1)
     console.log('Cambió la página')
   }
 
+  const getPaginationGroup = () => {
+    if (dataPagination.totalPages > 2) {
+      const start = Math.floor((currentPage - 1) / pageLimitPagination) * pageLimitPagination
+      return new Array(pageLimitPagination).fill().map((_, id) => start + id + 1)
+    }else{
+      return []
+    }
+  }
+
+  const changePage = async (e) => {
+    e.preventDefault()
+    await setCurrentPage(pageNumber.current.textContent)
+    console.log('Me están presionando', pageNumber.current.textContent)
+    console.log('Soy currentPage', currentPage)
+  }
 
   useEffect(() => {
     console.log('%cse actualizó el componente books', 'color: blue')
@@ -35,22 +52,22 @@ function Buscar () {
   useEffect(() => {
     console.log('%cse actualizó el componente keyword', 'color: red')
     //`http://www.omdbapi.com/?s=${keyword !== '' ? keyword : 'action'}&apikey=${apiKey}`
-    fetch(`http://localhost:3000/api/products?page=${page}&search=${keyword}`)
+    fetch(`http://localhost:3000/api/products?page=${currentPage-1}&search=${keyword}`)
       .then(response => response.json())
       .then(data => {
         console.log('Los libos son: ', data)
         if (!data.Error) {
           setBooks(data.books)
-          setDataAPI(data.pagination)
+          setDataPagination(data.pagination)
         } else {
           setBooks([])
-          setDataAPI({})
+          setDataPagination({})
         }
         console.log('La cantidad de películas es: ', books)
-        console.log('Pagination is', dataAPI)
+        console.log('Pagination is', dataPagination)
       })
       .catch(error => console.log(error))
-  }, [keyword, page])
+  }, [keyword, currentPage])
 
   return (
     <div>
@@ -100,17 +117,17 @@ function Buscar () {
           </div>
           <nav aria-label="...">
       <ul className="pagination">
-        <li className={`page-item ${dataAPI.previousPage === '' ? 'disabled' : ''}`} onClick={ dataAPI.previousPage !== '' ? previousPage : ''}>
+        <li className={`page-item ${dataPagination.previousPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.previousPage !== '' ? previousPage : ''}>
           <a className="page-link" href="#" tabindex="-1">Previous</a>
         </li>
-        <li className="page-item">
-          <a className="page-link" href="#">1</a>
-        </li>
-        <li className="page-item active">
-          <a className="page-link" href="#">2 <span className="sr-only">(current)</span></a>
-        </li>
 
-        <li className={`page-item ${dataAPI.nextPage === '' ? 'disabled' : ''}`} onClick={ dataAPI.nextPage !== '' ? changePage : ''}>
+        { getPaginationGroup().map((numberPage, id) => {
+          return <li className="page-item" key={id} >
+            <button type='submit' className="page-link" ref={pageNumber} >{numberPage}</button>
+          </li>
+        })}
+
+        <li className={`page-item ${dataPagination.nextPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.nextPage !== '' ? nextPage : ''}>
           <a className="page-link" href="#">Next</a>
         </li>
     </ul>
