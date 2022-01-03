@@ -14,4 +14,10 @@ export const SearchBook = styled.div`
       font-family: "DIN", sans-serif;
       margin-top: 40px; 
     }
+
+    .active {
+      border: 2px solid #0056b3;
+      color: #0056b3;
+      pointer-events: none;
+    }
 `

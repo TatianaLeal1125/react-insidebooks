@@ -19,13 +19,28 @@ function Buscar () {
     searchKeyWord.current.value = ''
   }
 
-  const nextPage = async (e) => {
-    await setCurrentPage(currentPage + 1)
+  const nextPage = async () => {
+    if (currentPage < dataPagination.totalPages) {
+      await setCurrentPage(currentPage + 1)
+    }
     console.log('Cambió la página')
   }
 
-  const previousPage = async (e) => {
-    await setCurrentPage(currentPage - 1)
+  const pageCero = async (e) => {
+    e.preventDefault()
+    await setCurrentPage(1)
+  }
+
+  const pageLimit = async (e) => {
+    e.preventDefault()
+    await setCurrentPage(dataPagination.totalPages)
+  }
+
+
+  const previousPage = async () => {
+    if (currentPage > 0) {
+      await setCurrentPage(currentPage - 1)
+    }
     console.log('Cambió la página')
   }
 
@@ -33,15 +48,14 @@ function Buscar () {
     if (dataPagination.totalPages > 2) {
       const start = Math.floor((currentPage - 1) / pageLimitPagination) * pageLimitPagination
       return new Array(pageLimitPagination).fill().map((_, id) => start + id + 1)
-    }else{
+    } else {
       return []
     }
   }
 
   const changePage = async (e) => {
-    e.preventDefault()
-    await setCurrentPage(pageNumber.current.textContent)
-    console.log('Me están presionando', pageNumber.current.textContent)
+    await setCurrentPage(Number(e.target.textContent))
+    console.log('Me están presionando', Number(e.target.textContent))
     console.log('Soy currentPage', currentPage)
   }
 
@@ -117,17 +131,21 @@ function Buscar () {
           </div>
           <nav aria-label="...">
       <ul className="pagination">
-        <li className={`page-item ${dataPagination.previousPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.previousPage !== '' ? previousPage : ''}>
-          <a className="page-link" href="#" tabindex="-1">Previous</a>
+        <li className={`page-item ${dataPagination.previousPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.previousPage !== '' ? previousPage : pageCero}>
+          <button className="page-link" tabindex="-1">Previous</button>
         </li>
 
         { getPaginationGroup().map((numberPage, id) => {
-          return <li className="page-item" key={id} >
-            <button type='submit' className="page-link" ref={pageNumber} >{numberPage}</button>
+          if (numberPage <= dataPagination.totalPages) {
+            return <li className="page-item" key={numberPage + id} >
+            <button className={`page-link ${currentPage === numberPage ? 'active': null}`} onClick={changePage} >
+              <span>{numberPage}</span>
+            </button>
           </li>
+          }
         })}
 
-        <li className={`page-item ${dataPagination.nextPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.nextPage !== '' ? nextPage : ''}>
+        <li className={`page-item ${dataPagination.nextPage === '' ? 'disabled' : ''}`} onClick={ dataPagination.nextPage !== '' ? nextPage : pageLimit}>
           <a className="page-link" href="#">Next</a>
         </li>
     </ul>
